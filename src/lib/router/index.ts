@@ -1,3 +1,4 @@
+import { render } from "../dom";
 import { createElement } from "../dom/client";
 import type { Component } from "../dom/types";
 import { pathToRegex } from "./utils";
@@ -56,11 +57,7 @@ const spaRouter = () => {
     } else {
       pageParams = params;
       if (routeInfo.root) {
-        while (routeInfo.root.firstChild) {
-          routeInfo.root.removeChild(routeInfo.root.firstChild);
-        }
-        routeInfo.root.appendChild(createElement(Component()));
-        // render(routeInfo.root, Component);
+        render(routeInfo.root, Component);
       } else {
         throw new Error("root element is empty");
       }
