@@ -1,14 +1,15 @@
+import { useState } from "@/lib/dom";
+
 const HomePage = () => {
+  const [count, setCount] = useState(1);
+  const handleIncreaseClick = () => {
+    setCount(count + 1);
+    console.log("count : ", count); // count : 0
+  };
   return (
     <div>
-      <h2>HomePage</h2>
-      <a data-link href="/post/1">
-        go post
-      </a>
-      &nbsp;&nbsp;
-      <a data-link href="/blog">
-        go blog
-      </a>
+      <span>{count}</span>
+      <button onclick={handleIncreaseClick}>클릭</button>
     </div>
   );
 };

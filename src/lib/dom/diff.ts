@@ -2,14 +2,16 @@ import { VNode } from "../jsx/jsx-runtime/type";
 import { createElement } from "./client";
 
 const diffTextVDOM = (newVDOM: VNode, currentVDOM: VNode) => {
-  if (typeof newVDOM !== "string" && typeof currentVDOM === "string")
+  if (typeof newVDOM === "number" && typeof currentVDOM === "string")
     return true;
-  if (typeof newVDOM === "string" && typeof currentVDOM !== "string")
+  if (typeof newVDOM === "string" && typeof currentVDOM === "number")
+    return true;
+  if (typeof newVDOM === "number" && typeof currentVDOM === "number")
     return true;
   if (typeof newVDOM === "string" && typeof currentVDOM === "string") {
-    if (newVDOM === currentVDOM) return false;
     return true;
   }
+  if (newVDOM === currentVDOM) return false;
 
   return false;
 };
@@ -39,9 +41,10 @@ const updateElement = (
     return;
   }
 
+  if (typeof newVDOM === "number" || typeof newVDOM === "string") return;
+  if (typeof currentVDOM === "number" || typeof currentVDOM === "string")
+    return;
   if (!newVDOM || !currentVDOM) return;
-  if (typeof newVDOM === "string" || typeof currentVDOM === "string") return;
-  if (typeof newVDOM === "number" || typeof currentVDOM === "number") return;
 
   if (newVDOM.type !== currentVDOM.type) {
     parent.replaceChild(createElement(newVDOM), parent.childNodes[index]);
