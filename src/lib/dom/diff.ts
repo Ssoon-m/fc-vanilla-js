@@ -18,20 +18,28 @@ const diffTextVDOM = (newVDOM: VNode, currentVDOM: VNode) => {
 
 const updateElement = (
   parent: Element,
-  newVDOM: VNode,
-  currentVDOM: VNode,
+  newVDOM?: VNode | null,
+  currentVDOM?: VNode | null,
   index: number = 0
 ) => {
   let removeIndex: undefined | number = undefined;
+  const hasOnlyCurrentVDOM =
+    newVDOM === null ||
+    (newVDOM === undefined &&
+      currentVDOM !== null &&
+      currentVDOM !== undefined);
+  const hasOnlyNewVDOM =
+    newVDOM !== null &&
+    newVDOM !== undefined &&
+    (currentVDOM === null || currentVDOM === undefined);
 
   if (parent.childNodes) {
-    if (!newVDOM && currentVDOM) {
+    if (hasOnlyCurrentVDOM) {
       parent.removeChild(parent.childNodes[index]);
       return index;
     }
   }
-
-  if (newVDOM && !currentVDOM) {
+  if (hasOnlyNewVDOM) {
     parent.appendChild(createElement(newVDOM));
     return;
   }

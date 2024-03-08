@@ -1,15 +1,22 @@
 import { useState } from "@/lib/dom";
 
 const HomePage = () => {
-  const [count, setCount] = useState(1);
+  const [firstCount, setFirstCount] = useState(0);
+  const [secondCount, setSecondCount] = useState(1);
   const handleIncreaseClick = () => {
-    setCount(count + 1);
-    console.log("count : ", count); // count : 0
+    setFirstCount(firstCount + 1);
   };
+  const handleIncreaseClick2 = () => {
+    setSecondCount(secondCount + 1);
+  };
+
   return (
     <div>
-      <span>{count}</span>
+      <span>
+        {firstCount}/{secondCount}
+      </span>
       <button onclick={handleIncreaseClick}>클릭</button>
+      <button onclick={handleIncreaseClick2}>클릭</button>
     </div>
   );
 };

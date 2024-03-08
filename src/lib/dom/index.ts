@@ -48,12 +48,12 @@ const domRenderer = () => {
   };
 
   const useState = <T>(initialState?: T) => {
-    const { stateHook: index } = options;
-    const state = (options.states[index] ?? initialState) as T;
+    const { stateHook: index, states } = options;
+    const state = (states[index] ?? initialState) as T;
     const setState = (newState: T) => {
       queueMicrotask(() => {
         if (shallowEqual(state, newState)) return;
-        options.states[index] = newState;
+        states[index] = newState;
         _render();
       });
     };
