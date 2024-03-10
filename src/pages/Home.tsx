@@ -1,24 +1,13 @@
-import { useState } from "@/lib/dom";
+import { useEffect, useState } from "@/lib/dom";
 
 const HomePage = () => {
-  const [firstCount, setFirstCount] = useState(0);
-  const [secondCount, setSecondCount] = useState(1);
-  const handleIncreaseClick = () => {
-    setFirstCount(firstCount + 1);
-  };
-  const handleIncreaseClick2 = () => {
-    setSecondCount(secondCount + 1);
-  };
-
-  return (
-    <div>
-      <span>
-        {firstCount}/{secondCount}
-      </span>
-      <button onclick={handleIncreaseClick}>클릭</button>
-      <button onclick={handleIncreaseClick2}>클릭</button>
-    </div>
-  );
+  const [value, setValue] = useState(0);
+  console.log("1");
+  useEffect(() => {
+    setValue(2);
+    console.log("2");
+  }, [value]);
+  return <div>Hello World!</div>;
 };
 
 export default HomePage;
