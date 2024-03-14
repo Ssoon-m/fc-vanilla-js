@@ -1,6 +1,6 @@
 ## Vanilla JS로 함수형 리액트 만들기
 
-[블로그 글](http://localhost:3000/series/vanillajs-fc-react)을 위한 저장소입니다.
+[블로그 글](https://ianlog.me/series/vanillajs-fc-react)을 위한 저장소입니다.
 
 Vanilla JS로 함수형 리액트 코드를 비슷하게 구현을 해보면서 아래 내용을 자연스럽게 익힙니다.
 
